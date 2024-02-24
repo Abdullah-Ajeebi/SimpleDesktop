@@ -1,0 +1,162 @@
+[gd_scene load_steps=17 format=3 uid="uid://mdh75sy7ehja"]
+
+[ext_resource type="Texture2D" uid="uid://b1er6s7llcu8q" path="res://icon.svg" id="1_e35dt"]
+[ext_resource type="Script" path="res://StartButton.gd" id="2_omsdu"]
+[ext_resource type="Texture2D" uid="uid://c50i517kih0hu" path="res://powerbutton.png" id="3_gvas6"]
+[ext_resource type="Script" path="res://Time.gd" id="4_5f6j1"]
+[ext_resource type="FontFile" uid="uid://cdhohe60a5qnu" path="res://Rubik-VariableFont_wght.ttf" id="4_h4pym"]
+[ext_resource type="Script" path="res://PowerButton.gd" id="4_qwsak"]
+[ext_resource type="Script" path="res://Shutdown.gd" id="6_ij2ab"]
+[ext_resource type="Script" path="res://Restart.gd" id="7_qig6f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xhear"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6oigm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o47jq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qsaii"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qg1im"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tl3k3"]
+
+[sub_resource type="FontVariation" id="FontVariation_yb0de"]
+base_font = ExtResource("4_h4pym")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w0jqe"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Background" type="ColorRect" parent="VBoxContainer"]
+z_index = -4096
+layout_mode = 2
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
+[node name="Taskbar" type="ColorRect" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.12
+color = Color(0.168627, 0.168627, 0.168627, 1)
+
+[node name="StartButton" type="Button" parent="VBoxContainer/Taskbar" node_paths=PackedStringArray("start_menu")]
+layout_mode = 0
+offset_right = 69.0
+offset_bottom = 69.0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xhear")
+toggle_mode = true
+icon = ExtResource("1_e35dt")
+text_overrun_behavior = 3
+expand_icon = true
+script = ExtResource("2_omsdu")
+start_menu = NodePath("../StartMenu")
+
+[node name="StartMenu" type="HBoxContainer" parent="VBoxContainer/Taskbar"]
+layout_mode = 0
+offset_top = -268.0
+offset_right = 186.0
+theme_override_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Taskbar/StartMenu"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme_override_constants/separation = 0
+
+[node name="Empty" type="ColorRect" parent="VBoxContainer/Taskbar/StartMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.4, 0.4, 0.4, 1)
+
+[node name="PowerButton" type="Button" parent="VBoxContainer/Taskbar/StartMenu/VBoxContainer" node_paths=PackedStringArray("scroll_container")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.13
+theme_override_styles/normal = SubResource("StyleBoxEmpty_6oigm")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_o47jq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_qsaii")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_qg1im")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_tl3k3")
+toggle_mode = true
+icon = ExtResource("3_gvas6")
+icon_alignment = 1
+expand_icon = true
+script = ExtResource("4_qwsak")
+scroll_container = NodePath("ScrollContainer")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Taskbar/StartMenu/VBoxContainer/PowerButton"]
+layout_mode = 0
+offset_top = -85.0
+offset_right = 100.0
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Taskbar/StartMenu/VBoxContainer/PowerButton/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+theme_override_constants/separation = 0
+
+[node name="Shutdown" type="Button" parent="VBoxContainer/Taskbar/StartMenu/VBoxContainer/PowerButton/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_yb0de")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w0jqe")
+text = "Shutdown"
+alignment = 0
+script = ExtResource("6_ij2ab")
+
+[node name="Restart" type="Button" parent="VBoxContainer/Taskbar/StartMenu/VBoxContainer/PowerButton/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_yb0de")
+theme_override_font_sizes/font_size = 15
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w0jqe")
+text = "Restart"
+alignment = 0
+script = ExtResource("7_qig6f")
+
+[node name="Right" type="ColorRect" parent="VBoxContainer/Taskbar/StartMenu"]
+z_index = -1
+layout_mode = 2
+size_flags_horizontal = 3
+color = Color(0.28, 0.28, 0.28, 1)
+
+[node name="Label" type="Label" parent="VBoxContainer/Taskbar"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -24.5
+offset_bottom = 24.5
+grow_horizontal = 0
+grow_vertical = 2
+text = "07:21 PM
+02/24/2024"
+horizontal_alignment = 1
+vertical_alignment = 3
+script = ExtResource("4_5f6j1")
+
+[connection signal="toggled" from="VBoxContainer/Taskbar/StartButton" to="VBoxContainer/Taskbar/StartButton" method="_on_toggled"]
+[connection signal="toggled" from="VBoxContainer/Taskbar/StartMenu/VBoxContainer/PowerButton" to="VBoxContainer/Taskbar/StartMenu/VBoxContainer/PowerButton" method="_on_toggled"]
+[connection signal="pressed" from="VBoxContainer/Taskbar/StartMenu/VBoxContainer/PowerButton/ScrollContainer/VBoxContainer/Shutdown" to="VBoxContainer/Taskbar/StartMenu/VBoxContainer/PowerButton/ScrollContainer/VBoxContainer/Shutdown" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/Taskbar/StartMenu/VBoxContainer/PowerButton/ScrollContainer/VBoxContainer/Restart" to="VBoxContainer/Taskbar/StartMenu/VBoxContainer/PowerButton/ScrollContainer/VBoxContainer/Restart" method="_on_pressed"]
