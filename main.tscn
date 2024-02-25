@@ -68,6 +68,7 @@ script = ExtResource("2_omsdu")
 start_menu = NodePath("../StartMenu")
 
 [node name="StartMenu" type="HBoxContainer" parent="VBoxContainer/Taskbar"]
+visible = false
 layout_mode = 0
 offset_top = -268.0
 offset_right = 186.0
