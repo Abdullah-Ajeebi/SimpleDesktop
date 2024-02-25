@@ -49,6 +49,15 @@ layout_mode = 2
 size_flags_vertical = 3
 color = Color(0, 0, 0, 1)
 
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer/Background"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 578.0
+columns = 18
+
+[node name="ColorRect" type="ColorRect" parent="VBoxContainer/Background/GridContainer"]
+layout_mode = 2
+
 [node name="Taskbar" type="ColorRect" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
